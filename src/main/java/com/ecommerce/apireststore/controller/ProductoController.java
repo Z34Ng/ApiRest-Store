@@ -40,7 +40,7 @@ public class ProductoController {
     //public ResponseEntity<Producto> saveProduct(Producto producto, HttpSession session) 
     //                                throws IOException {
     public Producto saveProduct(@RequestBody Producto producto) throws IOException {        
-        producto.setUser(usuarioService.findById(4).get());                
+        producto.setUser(usuarioService.findById(1).get());                
         return productoService.save(producto);
     }
     
