@@ -39,11 +39,11 @@ public class UsuarioController {
     BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
     
     @PostMapping("/save")
-    public ResponseEntity<Usuario> registrar(@RequestBody Usuario usuario){
+    public Usuario registrar(@RequestBody Usuario usuario){
         usuario.setTypeUser("USER");
         usuario.setPassword(passEncoder.encode(usuario.getPassword()));  
         
-        return ResponseEntity.ok(usuarioService.save(usuario));
+        return usuarioService.save(usuario);
     }
     
     @GetMapping("/getAll")
@@ -67,12 +67,12 @@ public class UsuarioController {
         else
             LOGGER.info("Usuario no existe");
         return "redirect:/";
-    }    
+    }
     
     @GetMapping("/getPurchases")
     public ResponseEntity<List<Orden>> getPurchases(HttpSession session){
-        String usuarioID=session.getAttribute("idusuario").toString();        
-        Usuario user=usuarioService.findById(Integer.parseInt(usuarioID)).get();                        
+        String usuarioID=session.getAttribute("idusuario").toString();
+        Usuario user=usuarioService.findById(Integer.parseInt(usuarioID)).get();
                 
         List<Orden> ordenes = ordenService.findByUser(user);
                 

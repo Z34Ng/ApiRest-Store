@@ -36,8 +36,7 @@ public class Usuario implements Serializable {
     private String email;    
     private String address;    
     private String phone;    
-    private String typeUser;   
-    @JsonIgnore
+    private String typeUser;       
     private String password;
     
     @JsonIgnore
