@@ -6,15 +6,14 @@ package com.ecommerce.apireststore.controller;
 
 import com.ecommerce.apireststore.model.Producto;
 import java.io.IOException;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import com.ecommerce.apireststore.service.IProductoService;
 import com.ecommerce.apireststore.service.IUsuarioService;
+import java.util.Comparator;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +42,10 @@ public class ProductoController {
     }
     
     @GetMapping("/getAll")
-    public List<Producto> showAll() {        
-        return productoService.findAll();
+    public List<Producto> showAll(){
+        List<Producto> productos=productoService.findAll();
+        productos.sort((Comparator.comparingInt(Producto::getId)).reversed());
+        return productos;
     }
     
     @GetMapping("/{id}")
@@ -56,5 +57,5 @@ public class ProductoController {
     public ResponseEntity<String> deleteProduct(@PathVariable int id) {                                       
         productoService.delete(id);
         return new ResponseEntity<>("Done",HttpStatus.OK);
-    }    
+    }
 }
