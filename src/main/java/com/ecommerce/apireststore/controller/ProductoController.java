@@ -36,9 +36,7 @@ public class ProductoController {
     @Autowired
     private IUsuarioService usuarioService;
     
-    @PostMapping("/save")
-    //public ResponseEntity<Producto> saveProduct(Producto producto, HttpSession session) 
-    //                                throws IOException {
+    @PostMapping("/save")    
     public Producto saveProduct(@RequestBody Producto producto) throws IOException {        
         producto.setUser(usuarioService.findById(1).get());                
         return productoService.save(producto);
@@ -58,6 +56,5 @@ public class ProductoController {
     public ResponseEntity<String> deleteProduct(@PathVariable int id) {                                       
         productoService.delete(id);
         return new ResponseEntity<>("Done",HttpStatus.OK);
-    }
-    
+    }    
 }
