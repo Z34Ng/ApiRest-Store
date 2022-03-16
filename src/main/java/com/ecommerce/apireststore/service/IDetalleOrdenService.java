@@ -4,7 +4,7 @@
  */
 package com.ecommerce.apireststore.service;
 
-import com.ecommerce.apireststore.model.DetalleOrden;
+import com.ecommerce.apireststore.entity.DetalleOrden;
 
 /**
  *

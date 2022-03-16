@@ -4,7 +4,7 @@
  */
 package com.ecommerce.apireststore.controller;
 
-import com.ecommerce.apireststore.model.Producto;
+import com.ecommerce.apireststore.entity.Producto;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

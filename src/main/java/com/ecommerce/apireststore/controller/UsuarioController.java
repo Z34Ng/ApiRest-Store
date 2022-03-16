@@ -4,9 +4,9 @@
  */
 package com.ecommerce.apireststore.controller;
 
-import com.ecommerce.apireststore.model.Orden;
-import com.ecommerce.apireststore.model.Producto;
-import com.ecommerce.apireststore.model.Usuario;
+import com.ecommerce.apireststore.entity.Orden;
+import com.ecommerce.apireststore.entity.Producto;
+import com.ecommerce.apireststore.entity.Usuario;
 import com.ecommerce.apireststore.service.IOrdenService;
 import com.ecommerce.apireststore.service.IUsuarioService;
 import java.util.List;

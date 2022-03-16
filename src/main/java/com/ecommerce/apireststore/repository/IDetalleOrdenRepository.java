@@ -4,7 +4,7 @@
  */
 package com.ecommerce.apireststore.repository;
 
-import com.ecommerce.apireststore.model.DetalleOrden;
+import com.ecommerce.apireststore.entity.DetalleOrden;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

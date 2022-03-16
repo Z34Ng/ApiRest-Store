@@ -4,7 +4,7 @@
  */
 package com.ecommerce.apireststore.service;
 
-import com.ecommerce.apireststore.model.Usuario;
+import com.ecommerce.apireststore.entity.Usuario;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
