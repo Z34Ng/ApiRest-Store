@@ -51,24 +51,6 @@ public class UsuarioController {
         return usuarioService.findAll();
     }
     /*
-    @GetMapping("/login")
-    public String login(Usuario usuario, HttpSession session){
-        Optional<Usuario> user = usuarioService.findById(
-                                    Integer.parseInt(
-                                    session.getAttribute("idusuario")
-                                            .toString()));  
-        if(user.isPresent()){
-            session.setAttribute("idusuario", user.get().getId()); 
-            if(user.get().getTypeUser().equals("ADMIN"))
-                return "redirect:/administrador";
-            else
-                return "redirect:/";
-        }
-        else
-            LOGGER.info("Usuario no existe");
-        return "redirect:/";
-    }
-    
     @GetMapping("/getPurchases")
     public ResponseEntity<List<Orden>> getPurchases(HttpSession session){
         String usuarioID=session.getAttribute("idusuario").toString();
