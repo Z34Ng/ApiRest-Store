@@ -24,6 +24,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.Data;
 
@@ -39,20 +40,30 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
-    @NotEmpty
+    
+    @NotEmpty    
     @Size(min=2, max=22, message="Name incorrect")
+    @Pattern(regexp="[A-Za-z]")
     private String name;
+    
     @NotEmpty
     @Size(min=2, max=22, message="Lastname incorrect")
+    @Pattern(regexp="[A-Za-z]")
     private String lastname;
+    
     @NotEmpty
     @Email
     @Column(unique=true)
-    private String email;    
+    private String email;
+    
     @NotBlank //la propiedad no sea nula ni espacio en blanco. (solo cadenas)
-    private String address;    
+    private String address;
+    
     @NotBlank
-    private String phone;    
+    @Size(min=6, max=9)
+    @Pattern(regexp = "[9][0-9]{9}") //inicia con 9, solo números, 9 caracteres
+    private String phone;
+    
     @NotBlank
     private String password;
     
@@ -66,7 +77,7 @@ public class Usuario implements Serializable {
     
     @JsonIgnore
     @OneToMany(mappedBy="user")
-    private List<Producto> productos; 
+    private List<Producto> productos;
     
     @OneToMany(mappedBy="user")
     private List<Orden> ordenes;
