@@ -49,22 +49,20 @@ public class Usuario implements Serializable {
     @Email
     @Column(unique=true)
     private String email;    
-    @NotEmpty
+    @NotBlank //la propiedad no sea nula ni espacio en blanco. (solo cadenas)
     private String address;    
     @NotBlank
     private String phone;    
-    @NotEmpty
+    @NotBlank
     private String password;
     
-    @NotEmpty    
+    @NotEmpty
     @ManyToMany 
     @JoinTable(
         name="usuario_rol", //se crea tabla "usuario_rol" que guarda las relaciones
         joinColumns=@JoinColumn(name="usuario_id"),//se crea el campo que hace referencia al id de usuario
-        inverseJoinColumns=@JoinColumn(name="rol_id"))
-    
-    
-    private Set<Rol> roles = new HashSet<>();    
+        inverseJoinColumns=@JoinColumn(name="rol_id"))        
+    private Set<Rol> roles = new HashSet<>(); // no permite elementos duplicados y no tiene orden entre sus elementos.
     
     @JsonIgnore
     @OneToMany(mappedBy="user")
