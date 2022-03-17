@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
+import com.ecommerce.apireststore.security.entity.Usuario;
 /**
  *
  * @author ZEAN

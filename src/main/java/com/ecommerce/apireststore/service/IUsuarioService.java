@@ -4,7 +4,7 @@
  */
 package com.ecommerce.apireststore.service;
 
-import com.ecommerce.apireststore.entity.Usuario;
+import com.ecommerce.apireststore.security.entity.Usuario;
 import java.util.List;
 import java.util.Optional;
 

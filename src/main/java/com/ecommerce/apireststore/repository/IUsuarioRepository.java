@@ -4,7 +4,7 @@
  */
 package com.ecommerce.apireststore.repository;
 
-import com.ecommerce.apireststore.entity.Usuario;
+import com.ecommerce.apireststore.security.entity.Usuario;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -5,7 +5,7 @@
 package com.ecommerce.apireststore.service;
 
 import com.ecommerce.apireststore.entity.Orden;
-import com.ecommerce.apireststore.entity.Usuario;
+import com.ecommerce.apireststore.security.entity.Usuario;
 import com.ecommerce.apireststore.repository.IOrdenRepository;
 import java.util.ArrayList;
 import java.util.List;
