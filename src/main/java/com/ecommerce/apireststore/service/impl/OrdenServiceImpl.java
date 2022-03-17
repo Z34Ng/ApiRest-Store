@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.ecommerce.apireststore.service;
+package com.ecommerce.apireststore.service.impl;
 
 import com.ecommerce.apireststore.entity.Orden;
 import com.ecommerce.apireststore.security.entity.Usuario;
 import com.ecommerce.apireststore.repository.IOrdenRepository;
+import com.ecommerce.apireststore.service.IOrdenService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
