@@ -52,8 +52,12 @@ public class Usuario implements Serializable {
     private String lastname;
     
     @NotEmpty
-    @Email
     @Column(unique=true)
+    @Pattern(regexp="[A-Za-z0-9]")
+    private String username;
+    
+    @NotEmpty
+    @Email
     private String email;
     
     @NotBlank //la propiedad no sea nula ni espacio en blanco. (solo cadenas)
@@ -82,11 +86,12 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy="user")
     private List<Orden> ordenes;
     
-    public Usuario(int id, String name, String email, String address, String lastname, String phone, String password) {
+    public Usuario(int id, String name, String username, String email, String address, String lastname, String phone, String password) {
         this.id = id;
         this.name = name;    
         this.lastname=lastname;
-        this.email = email;
+        this.email = username;
+        this.name = email;
         this.address = address;
         this.phone = phone;         
         this.password = password;
