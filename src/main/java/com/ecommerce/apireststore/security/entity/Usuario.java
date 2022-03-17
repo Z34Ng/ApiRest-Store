@@ -8,14 +8,23 @@ import com.ecommerce.apireststore.entity.Orden;
 import com.ecommerce.apireststore.entity.Producto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
@@ -29,13 +38,33 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;    
-    private String name;     
+    private int id;
+    @NotEmpty
+    @Size(min=2, max=22, message="Name incorrect")
+    private String name;
+    @NotEmpty
+    @Size(min=2, max=22, message="Lastname incorrect")
+    private String lastname;
+    @NotEmpty
+    @Email
+    @Column(unique=true)
     private String email;    
+    @NotEmpty
     private String address;    
+    @NotBlank
     private String phone;    
-    private String typeUser;       
+    @NotEmpty
     private String password;
+    
+    @NotEmpty    
+    @ManyToMany 
+    @JoinTable(
+        name="usuario_rol", //se crea tabla "usuario_rol" que guarda las relaciones
+        joinColumns=@JoinColumn(name="usuario_id"),//se crea el campo que hace referencia al id de usuario
+        inverseJoinColumns=@JoinColumn(name="rol_id"))
+    
+    
+    private Set<Rol> roles = new HashSet<>();    
     
     @JsonIgnore
     @OneToMany(mappedBy="user")
@@ -44,13 +73,13 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy="user")
     private List<Orden> ordenes;
     
-    public Usuario(int id, String name, String email, String address, String phone, String typeUser, String password) {
+    public Usuario(int id, String name, String email, String address, String lastname, String phone, String password) {
         this.id = id;
-        this.name = name;        
+        this.name = name;    
+        this.lastname=lastname;
         this.email = email;
         this.address = address;
-        this.phone = phone;
-        this.typeUser = typeUser;
+        this.phone = phone;         
         this.password = password;
     }
     
