@@ -39,8 +39,7 @@ public class UsuarioController {
     BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
     
     @PostMapping("/save")
-    public Usuario registrar(@RequestBody Usuario usuario){
-        usuario.setTypeUser("USER");
+    public Usuario registrar(@RequestBody Usuario usuario){        
         usuario.setPassword(passEncoder.encode(usuario.getPassword()));  
         
         return usuarioService.save(usuario);
