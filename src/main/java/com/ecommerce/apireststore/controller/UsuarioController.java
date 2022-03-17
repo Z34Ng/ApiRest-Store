@@ -47,7 +47,7 @@ public class UsuarioController {
     }
     
     @GetMapping("/getAll")
-    public List<Usuario> getAllUsers(){                
+    public List<Usuario> getAllUsers(){        
         return usuarioService.findAll();
     }
     /*
