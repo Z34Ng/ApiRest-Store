@@ -8,12 +8,16 @@ import com.ecommerce.apireststore.security.entity.Rol;
 import com.ecommerce.apireststore.security.repository.IRolRepository;
 import com.ecommerce.apireststore.security.service.IRolService;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author ZEAN
  */
+@Service
+@Transactional
 public class RolServiceImpl implements IRolService {
 
     @Autowired
