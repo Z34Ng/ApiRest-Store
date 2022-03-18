@@ -5,7 +5,7 @@
 package com.ecommerce.apireststore.service.impl;
 
 import com.ecommerce.apireststore.security.entity.Usuario;
-import com.ecommerce.apireststore.repository.IUsuarioRepository;
+import com.ecommerce.apireststore.security.repository.IUsuarioRepository;
 import com.ecommerce.apireststore.service.IUsuarioService;
 import java.util.List;
 import java.util.Optional;
