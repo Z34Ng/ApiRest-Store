@@ -14,10 +14,10 @@ import java.util.Optional;
  */
 public interface IUsuarioService {
     Optional<Usuario> findById(int id);
-    Optional<Usuario> findByUsername();
+    Optional<Usuario> findByUsername(String username);
     Optional<Usuario> findByEmail(String email);
     Usuario save(Usuario usuario);
     List<Usuario> findAll();
-    boolean existsByUsername();
-    boolean existsByEmail();
+    boolean existsByUsername(String username);
+    boolean existsByEmail(String email);
 }

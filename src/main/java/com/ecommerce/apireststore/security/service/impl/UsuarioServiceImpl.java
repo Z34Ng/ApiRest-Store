@@ -9,6 +9,7 @@ import com.ecommerce.apireststore.security.repository.IUsuarioRepository;
 import com.ecommerce.apireststore.security.service.IUsuarioService;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
  * @author ZEAN
  */
 @Service
+@Transactional
 public class UsuarioServiceImpl implements IUsuarioService{
     
     @Autowired
@@ -42,19 +44,19 @@ public class UsuarioServiceImpl implements IUsuarioService{
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
-
+    
     @Override
-    public Optional<Usuario> findByUsername() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Optional<Usuario> findByUsername(String username) {
+        return usuarioRepository.findByUsername(username);
     }
 
     @Override
-    public boolean existsByUsername() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean existsByUsername(String username) {
+        return usuarioRepository.existByUsername(username);
     }
 
     @Override
-    public boolean existsByEmail() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean existsByEmail(String email) {
+        return usuarioRepository.existByEmail(email);
     }
 }
