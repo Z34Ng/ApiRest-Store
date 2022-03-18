@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.ecommerce.apireststore.service.impl;
+package com.ecommerce.apireststore.security.service.impl;
 
 import com.ecommerce.apireststore.security.entity.Usuario;
 import com.ecommerce.apireststore.security.repository.IUsuarioRepository;
-import com.ecommerce.apireststore.service.IUsuarioService;
+import com.ecommerce.apireststore.security.service.IUsuarioService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +41,20 @@ public class UsuarioServiceImpl implements IUsuarioService{
     @Override
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
+    }
+
+    @Override
+    public Optional<Usuario> findByUsername() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean existsByUsername() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean existsByEmail() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

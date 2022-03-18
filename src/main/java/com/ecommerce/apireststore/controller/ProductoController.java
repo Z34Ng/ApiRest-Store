@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ecommerce.apireststore.service.IProductoService;
-import com.ecommerce.apireststore.service.IUsuarioService;
+import com.ecommerce.apireststore.security.service.IUsuarioService;
 import java.util.Comparator;
 import java.util.List;
 import org.springframework.http.HttpStatus;

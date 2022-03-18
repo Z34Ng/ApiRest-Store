@@ -8,7 +8,7 @@ import com.ecommerce.apireststore.entity.Orden;
 import com.ecommerce.apireststore.entity.Producto;
 import com.ecommerce.apireststore.security.entity.Usuario;
 import com.ecommerce.apireststore.service.IOrdenService;
-import com.ecommerce.apireststore.service.IUsuarioService;
+import com.ecommerce.apireststore.security.service.IUsuarioService;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.ecommerce.apireststore.service.IProductoService;
-import com.ecommerce.apireststore.service.IUsuarioService;
+import com.ecommerce.apireststore.security.service.IUsuarioService;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.RestController;
