@@ -5,6 +5,7 @@
 package com.ecommerce.apireststore.security.service.impl;
 
 import com.ecommerce.apireststore.security.entity.Rol;
+import com.ecommerce.apireststore.security.enums.RolNombre;
 import com.ecommerce.apireststore.security.repository.IRolRepository;
 import com.ecommerce.apireststore.security.service.IRolService;
 import java.util.Optional;
@@ -21,15 +22,10 @@ import org.springframework.stereotype.Service;
 public class RolServiceImpl implements IRolService {
 
     @Autowired
-    IRolRepository rolRepository;
-    
-    @Override
-    public Rol save(Rol rol) {
-        return rolRepository.save(rol);
-    }
+    IRolRepository rolRepository;    
 
     @Override
-    public Optional<Rol> findByRolNombre(String rolNombre) {
+    public Optional<Rol> findByRolNombre(RolNombre rolNombre) {
         return rolRepository.findByRolNombre(rolNombre);
     }
     

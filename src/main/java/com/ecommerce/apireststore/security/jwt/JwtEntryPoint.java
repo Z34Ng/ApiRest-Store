@@ -27,7 +27,9 @@ public class JwtEntryPoint implements AuthenticationEntryPoint{
     
     //Rechaza todas las peticiones que no esten autenticadas
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+    public void commence(HttpServletRequest request, HttpServletResponse response, 
+                            AuthenticationException authException) throws IOException, ServletException {
+        
         LOG.error("Error en metodo commece");
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED,"No autorizado");
     }

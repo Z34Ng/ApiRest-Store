@@ -19,7 +19,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer>{
     //obtiene un registro por email
     Optional<Usuario> findByEmail(String email);       
     Optional<Usuario> findByUsername(String username);
-    boolean existByUsername(String username);
-    boolean existByEmail(String email);
+    boolean existsByUsername(String username);
+    boolean existsByEmail(String email);
     
 }

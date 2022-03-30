@@ -52,11 +52,11 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
     @Override
     public boolean existsByUsername(String username) {
-        return usuarioRepository.existByUsername(username);
+        return usuarioRepository.existsByUsername(username);
     }
 
     @Override
     public boolean existsByEmail(String email) {
-        return usuarioRepository.existByEmail(email);
+        return usuarioRepository.existsByEmail(email);
     }
 }

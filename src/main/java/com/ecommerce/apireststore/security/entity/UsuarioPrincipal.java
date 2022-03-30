@@ -25,9 +25,7 @@ public class UsuarioPrincipal implements UserDetails{
     private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
-
-    
-
+   
     //asigna los privilegios a c/usuario, la autorizacion
     public static UsuarioPrincipal build(Usuario usuario){
         List<GrantedAuthority> authorities = 

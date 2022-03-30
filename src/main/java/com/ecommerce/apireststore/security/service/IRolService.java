@@ -5,6 +5,7 @@
 package com.ecommerce.apireststore.security.service;
 
 import com.ecommerce.apireststore.security.entity.Rol;
+import com.ecommerce.apireststore.security.enums.RolNombre;
 import java.util.Optional;
 
 /**
@@ -12,6 +13,5 @@ import java.util.Optional;
  * @author ZEAN
  */
 public interface IRolService {
-    Rol save(Rol rol);
-    Optional<Rol> findByRolNombre(String rol);
+    Optional<Rol> findByRolNombre(RolNombre rol);
 }

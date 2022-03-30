@@ -35,6 +35,7 @@ public class JwtProvider {
     
     @Value("${jwt.secret}")
     private String secret; // variable definida en application.properties
+    
     @Value("${jwt.expiration}")
     private int expiration; // variable definida en application.properties
     
@@ -49,7 +50,7 @@ public class JwtProvider {
     }
     
     public String getUsernameFromToken(String token){
-        return Jwts.parser().setSigningKey(secret).parseClaimsJwt(token)
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token)
                 .getBody().getSubject();
     }
     

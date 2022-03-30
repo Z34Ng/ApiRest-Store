@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,11 +22,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
@@ -39,40 +36,22 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
-    
-    @NotEmpty    
-    @Size(min=2, max=22, message="Name incorrect")
-    @Pattern(regexp="[A-Za-z]")
+    @JsonIgnore
+    private int id;    
     private String name;
-    
-    @NotEmpty
-    @Size(min=2, max=22, message="Lastname incorrect")
-    @Pattern(regexp="[A-Za-z]")
     private String lastname;
     
-    @NotEmpty
     @Column(unique=true)
-    @Pattern(regexp="[A-Za-z0-9]")
-    private String username;
-    
-    @NotEmpty
-    @Email
-    private String email;
-    
-    @NotBlank //la propiedad no sea nula ni espacio en blanco. (solo cadenas)
-    private String address;
-    
-    @NotBlank
-    @Size(min=6, max=9)
-    @Pattern(regexp = "[9][0-9]{9}") //inicia con 9, solo números, 9 caracteres
+    private String username;    
+    private String email;    
+    private String address;    
     private String phone;
-    
-    @NotBlank
+    @JsonIgnore
     private String password;
     
-    @NotEmpty
-    @ManyToMany 
+    @NotNull//se puede quitar esta anotacion
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JsonIgnore
     @JoinTable(
         name="usuario_rol", //se crea tabla "usuario_rol" que guarda las relaciones
         joinColumns=@JoinColumn(name="usuario_id"),//se crea el campo que hace referencia al id de usuario
@@ -83,20 +62,20 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy="user")
     private List<Producto> productos;
     
+    @JsonIgnore
     @OneToMany(mappedBy="user")
     private List<Orden> ordenes;
     
-    public Usuario(int id, String name, String username, String email, String address, String lastname, String phone, String password) {
-        this.id = id;
+    public Usuario(String name, String lastname, String username, String email, String address,  String phone, String password) {        
         this.name = name;    
-        this.lastname=lastname;
-        this.email = username;
-        this.name = email;
+        this.lastname = lastname;
+        this.email = email;
+        this.username = username;
         this.address = address;
         this.phone = phone;         
         this.password = password;
     }
     
-    public Usuario(){        
+    public Usuario(){
     }
 }

@@ -17,6 +17,7 @@ import java.util.Comparator;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,9 +36,10 @@ public class ProductoController {
     @Autowired
     private IUsuarioService usuarioService;
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/save")    
     public Producto saveProduct(@RequestBody Producto producto) throws IOException {        
-        producto.setUser(usuarioService.findById(1).get());                
+        producto.setUser(usuarioService.findById(2).get());                
         return productoService.save(producto);
     }
     
@@ -49,10 +51,11 @@ public class ProductoController {
     }
     
     @GetMapping("/{id}")
-    public Producto getProductById(@PathVariable int id) {
+    public Producto getProductById(@PathVariable int id) {        
         return productoService.findProducto(id).get();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable int id) {                                       
         productoService.delete(id);

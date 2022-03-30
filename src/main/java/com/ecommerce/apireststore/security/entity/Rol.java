@@ -5,6 +5,7 @@
 package com.ecommerce.apireststore.security.entity;
 
 import com.ecommerce.apireststore.security.enums.RolNombre;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,7 +23,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name="rol")
-public class Rol {
+public class Rol implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
@@ -31,5 +32,10 @@ public class Rol {
     @Enumerated(EnumType.STRING) //se debe definir el tipo ya que por defecto se crea como int
     private RolNombre rolNombre;
    
+    public Rol(){        
+    }
     
+    public Rol(@NotNull RolNombre rolNombre){
+        this.rolNombre=rolNombre;
+    }
 }
