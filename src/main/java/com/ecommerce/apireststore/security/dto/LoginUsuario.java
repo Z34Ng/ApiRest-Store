@@ -15,7 +15,7 @@ import lombok.Data;
  */
 @Data
 public class LoginUsuario {
-    @NotEmpty
+    @NotBlank
     //@Pattern(regexp="[A-Za-z0-9]")
     private String username; 
     
