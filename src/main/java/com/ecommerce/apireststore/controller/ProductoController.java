@@ -13,14 +13,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ecommerce.apireststore.service.IProductoService;
 import com.ecommerce.apireststore.security.service.IUsuarioService;
+import com.ecommerce.apireststore.service.aws.AwsS3Service;
 import java.util.Comparator;
 import java.util.List;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -36,10 +39,22 @@ public class ProductoController {
     @Autowired
     private IUsuarioService usuarioService;
     
+    @Autowired
+    private AwsS3Service awss3Service;
+    
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/save")    
-    public Producto saveProduct(@RequestBody Producto producto) throws IOException {        
-        producto.setUser(usuarioService.findById(2).get());                
+    @PostMapping(path="/save", consumes={MediaType.MULTIPART_FORM_DATA_VALUE})    
+    public Producto saveProduct(@RequestPart Producto producto, @RequestPart MultipartFile img){                        
+        if(!img.isEmpty()){
+            String key=awss3Service.uploadFile(img);
+            producto.setImgKey(key);
+            producto.setPicture(awss3Service.getFileUrl(key));
+        }
+        else{
+            producto.setImgKey("default.jpg");
+            producto.setPicture(awss3Service.getFileUrl(producto.getImgKey()));
+        }
+        producto.setUser(usuarioService.findById(1).get());                
         return productoService.save(producto);
     }
     
@@ -57,8 +72,11 @@ public class ProductoController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable int id) {                                       
+    public ResponseEntity<String> deleteProduct(@PathVariable int id) {
+        String key=productoService.findProducto(id).get().getImgKey();
+        if(!key.equals("default.jpg"))
+            awss3Service.deleteFile(key);
         productoService.delete(id);
         return new ResponseEntity<>("Done",HttpStatus.OK);
-    }
+    }    
 }

@@ -66,7 +66,8 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy="user")
     private List<Orden> ordenes;
     
-    public Usuario(String name, String lastname, String username, String email, String address,  String phone, String password) {        
+    public Usuario(String name, String lastname, String username, String email, 
+                                String address,  String phone, String password) {        
         this.name = name;    
         this.lastname = lastname;
         this.email = email;

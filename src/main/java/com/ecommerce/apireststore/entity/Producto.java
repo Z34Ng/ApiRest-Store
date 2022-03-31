@@ -30,6 +30,7 @@ public class Producto implements Serializable {
     private String name;
     private String description;
     private String picture;
+    private String imgKey;
     private double price;
     private int amount;
     
@@ -39,13 +40,15 @@ public class Producto implements Serializable {
     public Producto() {
     }
     
-    public Producto(Integer id, String name, String description, String picture, double price, int amount, Usuario user) {
+    public Producto(Integer id, String name, String description, String imgKey, 
+                    String picture, double price, int amount, Usuario user ){
         this.id = id;
         this.name = name;
         this.description = description;
         this.picture = picture;
+        this.imgKey = imgKey;
         this.price = price;
         this.amount = amount;
         this.user = user;
-    }        
+    }         
 }
