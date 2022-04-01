@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 import com.ecommerce.apireststore.security.entity.Usuario;
+import javax.persistence.CascadeType;
 
 /**
  *
@@ -30,23 +31,21 @@ public class Orden implements Serializable {
     private int  id;
     private String number; 
     private LocalDate createDate;
-    private LocalDate reciedDate;
+    private LocalDate deliveryDate;
     private double amount;
     
     @ManyToOne
     private Usuario user;
     
-    @OneToMany(mappedBy="orden")
+    @OneToMany(mappedBy="orden", cascade=CascadeType.ALL)
     private List<DetalleOrden> detalles;
     
-    public Orden() {
+    public Orden(){
     }
 
-    public Orden(int id, String number, LocalDate createDate, LocalDate reciedDate, double amount) {
-        this.id = id;
+    public Orden(String number, LocalDate createDate, double amount) {
         this.number = number;
-        this.createDate = createDate;
-        this.reciedDate = reciedDate;
+        this.createDate = createDate;        
         this.amount = amount;
     }
 }

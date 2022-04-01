@@ -71,4 +71,9 @@ public class OrdenServiceImpl implements IOrdenService{
     public Optional<Orden> findById(Integer id) {
         return ordenRepository.findById(id);
     }
+
+    @Override
+    public void delete(Integer id) {
+        ordenRepository.deleteById(id);
+    }
 }

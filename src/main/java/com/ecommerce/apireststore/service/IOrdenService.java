@@ -20,4 +20,5 @@ public interface IOrdenService {
     Optional<Orden> findById(Integer  id);    
     List<Orden> findByUser(Usuario usuario); //retorna ordenes de un usuario
     //el nombre del metodo es de acuerdo al nombre de la variable por la que se quiere trabajar
+    void delete(Integer id);
 }

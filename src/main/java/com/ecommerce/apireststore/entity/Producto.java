@@ -4,8 +4,6 @@
  */
 package com.ecommerce.apireststore.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +20,6 @@ import com.ecommerce.apireststore.security.entity.Usuario;
 @Entity
 @Data
 @Table(name="producto")
-
 public class Producto implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -32,7 +29,7 @@ public class Producto implements Serializable {
     private String picture;
     private String imgKey;
     private double price;
-    private int amount;
+    private int stock;
     
     @ManyToOne
     private Usuario user;
@@ -41,14 +38,14 @@ public class Producto implements Serializable {
     }
     
     public Producto(Integer id, String name, String description, String imgKey, 
-                    String picture, double price, int amount, Usuario user ){
+                    String picture, double price, int stock, Usuario user){
         this.id = id;
         this.name = name;
         this.description = description;
         this.picture = picture;
         this.imgKey = imgKey;
-        this.price = price;
-        this.amount = amount;
+        this.stock = stock;
+        this.price = price;        
         this.user = user;
     }         
 }

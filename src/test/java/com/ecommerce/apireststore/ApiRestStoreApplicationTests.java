@@ -1,10 +1,10 @@
-package com.ecommerce.zeanstore.ClothesStore;
+package com.ecommerce.apireststore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ClothesStoreApplicationTests {
+class ApiRestStoreApplicationTests {
 
 	@Test
 	void contextLoads() {

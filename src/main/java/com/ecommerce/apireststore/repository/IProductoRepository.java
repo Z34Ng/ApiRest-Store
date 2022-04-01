@@ -5,6 +5,7 @@
 package com.ecommerce.apireststore.repository;
 
 import com.ecommerce.apireststore.entity.Producto;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +15,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface IProductoRepository extends JpaRepository<Producto,Integer >{
-    
+    Optional<Producto> findByName(String name);
+    boolean existsByName(String name);
 }

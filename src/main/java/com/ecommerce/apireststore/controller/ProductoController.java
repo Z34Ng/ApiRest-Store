@@ -5,7 +5,6 @@
 package com.ecommerce.apireststore.controller;
 
 import com.ecommerce.apireststore.entity.Producto;
-import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +19,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,7 +55,10 @@ public class ProductoController {
             producto.setImgKey("default.jpg");
             producto.setPicture(awss3Service.getFileUrl(producto.getImgKey()));
         }
-        producto.setUser(usuarioService.findById(1).get());                
+        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext()
+                                                .getAuthentication().getPrincipal();
+        String username = userDetails.getUsername();
+        producto.setUser(usuarioService.findByUsername(username).get());                
         return productoService.save(producto);
     }
     

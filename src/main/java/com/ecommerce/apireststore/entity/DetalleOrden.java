@@ -24,9 +24,8 @@ public class DetalleOrden implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
-    private String name; 
-    private double amount; 
-    private double prize; 
+    private String productName;
+    private int amount; 
     private double total; 
 
     @ManyToOne
@@ -35,14 +34,12 @@ public class DetalleOrden implements Serializable {
     @ManyToOne
     private Producto producto;
 
-    public DetalleOrden(int id, String name, double amount, double prize, double total) {
-        this.id = id;
-        this.name = name;
+    public DetalleOrden(String productName, int amount, double total) {        
+        this.productName = productName;
         this.amount = amount;
-        this.prize = prize;
         this.total = total;
     }
 
-    public DetalleOrden() {
+    public DetalleOrden(){
     }
 }

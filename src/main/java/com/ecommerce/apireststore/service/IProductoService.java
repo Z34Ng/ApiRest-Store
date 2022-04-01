@@ -13,10 +13,11 @@ import java.util.Optional;
  * @author ZEAN
  */
 public interface IProductoService {
-    public Producto save(Producto producto);
-    public Optional<Producto> findProducto(Integer  id);  
-    public void update(Producto producto);
-    public void delete(Integer  id);
-    public List<Producto> findAll();
-    
+    Producto save(Producto producto);
+    Optional<Producto> findProducto(Integer  id);
+    Optional<Producto> findByName(String name);
+    boolean existsByName(String name);
+    void update(Producto producto);
+    void delete(Integer  id);
+    List<Producto> findAll();    
 }

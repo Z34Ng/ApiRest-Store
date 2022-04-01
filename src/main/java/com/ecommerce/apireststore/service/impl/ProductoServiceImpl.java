@@ -46,5 +46,14 @@ public class ProductoServiceImpl implements IProductoService{
     public List<Producto> findAll() {
         return productoRepository.findAll();
     }
-    
+
+    @Override
+    public Optional<Producto> findByName(String name) {
+        return productoRepository.findByName(name);
+    }    
+
+    @Override
+    public boolean existsByName(String name) {
+        return productoRepository.existsByName(name);
+    }
 }
